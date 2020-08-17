@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 })
 export class ServiceApiService {
 
-  server: 'http://localhost/apiAngular/';
+  server = 'http://localhost/apiAngular/';
 
   constructor( private http: HttpClient) { }
 

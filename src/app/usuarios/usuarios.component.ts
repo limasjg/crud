@@ -12,17 +12,15 @@ export class UsuariosComponent implements OnInit {
   limit = 10;
   start = 0;
   nome = '';
-  email = '';
+  usuario = '';
   senha = '';
+  id = '';
 
   constructor(
     private provider: ServiceApiService
   ) { }
 
   ngOnInit() {
-  }
-
-  ionViewWillEnter() {
     this.lista = [];
     this.start = 0;
     this.carregar();
@@ -36,12 +34,42 @@ export class UsuariosComponent implements OnInit {
         start: this.start
       };
       this.provider.Api(dados, 'apiUsuarios.php').subscribe(data => {
-          for ( const dado of data[' result ']) {
+          // tslint:disable-next-line: no-string-literal
+          for ( const dado of data['result']) {
             this.lista.push(dado);
           }
           resolve(true);
         });
     });
   }
+
+  adicionar() {
+    return new Promise(resolve => {
+      const dados = {
+        requisicao: 'add',
+        nome: this.nome,
+        usuario: this.usuario,
+        senha: this.senha
+
+      };
+      this.provider.Api(dados, 'apiUsuarios.php').subscribe(data => {
+          // tslint:disable-next-line: no-string-literal
+          if ( data['success']) {
+            alert('Salvo com Sucesso!');
+            location = 'usuarios';
+          } else {
+            alert('Salvo com Sucesso!');
+          }
+        });
+    });
+  }
+
+  editar(nome: string, usuario: string, senha: string, id: string) {
+    this.nome = nome;
+    this.usuario = usuario;
+    this.senha = senha;
+    this.id = id;
+  }
+
 
 }

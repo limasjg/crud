@@ -1,1 +1,103 @@
-<p>usuarios works!</p>
+<br />
+
+<p class="ml-2">API DE USUARIOS</p>
+
+<button class="btn btn-success ml-2" data-toggle="modal" data-target="#modal">Adicionar</button>
+
+<br />
+<br />
+
+<table class="table table-striped m-2">
+  <tr>
+    <th>Nome</th>
+    <th>Usuario</th>
+    <th>Senha</th>
+    <th>Ações</th>
+  </tr>
+  <tr *ngFor="let dado of lista">
+    <td>{{ dado.nome }}</td>
+    <td>{{ dado.usuario }}</td>
+    <td>{{ dado.senha }}</td>
+    <td>
+      <a (click)="editar(dado.nome, dado.usuario, dado.senha, dado.id)" data-toggle="modal" data-target="#modalEditar">
+      <i class="fas fa-edit text-info mr-2"></i>
+    </a>
+    <i class="fas fa-trash-alt text-danger"></i></td>
+  </tr>
+</table>
+
+<!---------------------------------- MODAL ------------------------------------------>
+
+<div id="modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Inserir Usuário</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="POST">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Nome</label>
+            <input type="text" class="form-control" (input)="this.nome = $event.target.value" value="{{nome}}" aria-describedby="emailHelp"
+              placeholder="seu nome" required>
+
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email</label>
+            <input type="email" class="form-control" (input)="this.usuario = $event.target.value" value="{{usuario}}" aria-describedby="emailHelp"
+              placeholder="seu email" required>
+
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="text" class="form-control" (input)="this.senha = $event.target.value" value="{{senha}}" placeholder="Senha" required>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="adicionar()">salvar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!---------------------------------- FIM MODAL ------------------------------------------>
+
+  <div id="modalEditar" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Editar Usuário</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form method="POST">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Nome</label>
+              <input type="text" class="form-control" (input)="this.nome = $event.target.value" aria-describedby="emailHelp"
+                placeholder="seu nome" required>
+
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email</label>
+              <input type="email" class="form-control" (input)="this.usuario = $event.target.value" aria-describedby="emailHelp"
+                placeholder="seu email" required>
+
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="text" class="form-control" (input)="this.senha = $event.target.value" placeholder="Senha" required>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" (click)="adicionar()">salvar</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
