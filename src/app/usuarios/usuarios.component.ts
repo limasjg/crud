@@ -20,8 +20,8 @@ export class UsuariosComponent implements OnInit {
   textoBuscar = '';
 
   constructor(
-    private router: Router,
-    private provider: ServiceApiService
+    private provider: ServiceApiService,
+    private router: Router
   ) { }
 
   ngOnInit() {

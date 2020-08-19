@@ -10,10 +10,12 @@
     <div class="col-lg-4 col-md-6 col-sm-12">
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search"
-        (input)="this.textoBuscar = $event.target.value" aria-label="Search">
-        <a (click)="carregar(this.textoBuscar)"
+        (input)="carregar($event.target.value)" aria-label="Search">
+        <!--
+          (change)="this.textoBuscar = $event.target.value"
+          <a (click)="carregar(this.textoBuscar)"
         class="btn btn-info my-2 my-sm-0">
-        <i class="fas fa-search"></i></a>
+        <i class="fas fa-search"></i></a> -->
       </form>
     </div>
   </div>
